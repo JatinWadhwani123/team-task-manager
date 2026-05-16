@@ -2,83 +2,119 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TaskFlow Pro</title>
-
-  <link
-    rel="stylesheet"
-    href="./css/style.css"
-  />
-
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
-
 <body>
+  <div class="page-shell">
+    <header class="navbar">
+      <div class="logo">TaskFlow Pro</div>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#benefits">Benefits</a>
+        <a href="./pages/contact.html">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="./pages/login.html" class="text-link">Login</a>
+        <a href="./pages/signup.html" class="btn btn-primary">Get Started</a>
+      </div>
+    </header>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">
-      TaskFlow Pro
-    </div>
+    <main>
+      <section class="hero-section">
+        <div class="hero-copy">
+          <span class="eyebrow">Task management for modern teams</span>
+          <h1>Run projects faster and deliver work with confidence.</h1>
+          <p>Plan tasks, assign work, track progress, and keep your team aligned — all from a single workspace designed for productivity.</p>
+          <div class="hero-cta">
+            <a href="./pages/signup.html" class="btn btn-primary">Start Free Trial</a>
+          </div>
+        </div>
 
-    <div class="nav-buttons">
-      <a href="./pages/login.html">
-        Login
-      </a>
+        <div class="hero-visual">
+          <div class="hero-card">
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=900&q=80" alt="Task dashboard" />
+          </div>
+        </div>
+      </section>
 
-      <a
-        href="./pages/signup.html"
-        class="signup-btn"
-      >
-        Get Started
-      </a>
-    </div>
-  </nav>
+      <section class="trust-bar">
+        <span>Trusted by cross-functional teams worldwide</span>
+        <div class="logos">
+          <span>Marketing</span>
+          <span>Engineering</span>
+          <span>Operations</span>
+          <span>HR</span>
+          <span>Finance</span>
+        </div>
+      </section>
 
-  <!-- Hero Section -->
-  <section class="hero">
+      <section id="features" class="feature-grid">
+        <article>
+          <h3>Organize work visually</h3>
+          <p>Create tasks, milestones, and boards so every project stays on track from start to finish.</p>
+        </article>
+        <article>
+          <h3>Collaborate with clarity</h3>
+          <p>Assign responsibilities, add comments, and keep everyone aligned with real-time updates.</p>
+        </article>
+        <article>
+          <h3>Track progress instantly</h3>
+          <p>Visual dashboards and reports help you spot bottlenecks before they slow the team down.</p>
+        </article>
+        <article>
+          <h3>Automate routine work</h3>
+          <p>Set reminders, recurring tasks, and workflows to save time and reduce manual follow-up.</p>
+        </article>
+      </section>
 
-    <div class="hero-left">
-      <h1>
-        Manage Projects & Tasks
-        Like a Professional Team
-      </h1>
+      <section id="benefits" class="split-panel">
+        <div class="split-info">
+          <span class="eyebrow">Built to keep teams moving</span>
+          <h2>Everything your team needs to finish work faster.</h2>
+          <p>From task planning to approvals, TaskFlow Pro provides the tools your team needs to collaborate effectively and deliver outstanding results.</p>
+          <ul>
+            <li>Task lists, subtasks, and dependencies</li>
+            <li>Team and time tracking in one place</li>
+            <li>Secure access controls and user roles</li>
+          </ul>
+        </div>
+        <div class="split-visual">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" alt="Team collaboration" />
+        </div>
+      </section>
 
-      <p>
-        Collaborate with your
-        team, manage tasks,
-        track progress and
-        stay productive.
-      </p>
-
-      <a
-        href="./pages/signup.html"
-        class="hero-btn"
-      >
-        Start Managing →
-      </a>
-    </div>
-
-    <div class="hero-right">
-      <img
-        src="https://images.unsplash.com/photo-1552664730-d307ca884978"
-        alt="Task Management"
-      />
-    </div>
-
-  </section>
-
+    </main>
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-brand footer-section">
+          <strong>TaskFlow Pro</strong>
+          <p>Manage projects, collaborate with your team, and deliver work more efficiently.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Product</h4>
+          <a href="./pages/dashboard.html">Dashboard</a>
+          <a href="./pages/projects.html">Projects</a>
+          <a href="./pages/tasks.html">Tasks</a>
+        </div>
+        <div class="footer-section">
+          <h4>Company</h4>
+          <a href="./pages/login.html">Login</a>
+          <a href="./pages/signup.html">Sign Up</a>
+          <a href="./pages/contact.html">Contact Us</a>
+        </div>
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <a href="./pages/privacy.html">Privacy Policy</a>
+          <a href="./pages/terms.html">Terms of Service</a>
+          <a href="./pages/cookie.html">Cookie Policy</a>
+        </div>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>

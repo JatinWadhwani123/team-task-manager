@@ -35,6 +35,34 @@ href=
 
 <body>
 
+<div
+class="mission-loader"
+id="projectsLoader"
+role="status"
+aria-live="polite"
+>
+  <div class="mission-card">
+    <div class="mission-radar" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <p class="mission-label">Loading mission board</p>
+    <h2>Scanning your projects</h2>
+    <p id="projectsLoaderMessage">
+      Locating active project zones...
+    </p>
+    <div class="mission-progress" aria-hidden="true">
+      <div></div>
+    </div>
+    <div class="mission-badges" aria-hidden="true">
+      <span>Projects</span>
+      <span>Members</span>
+      <span>Status</span>
+    </div>
+  </div>
+</div>
+
 <div class="container">
 
 <!-- Sidebar -->
@@ -77,14 +105,19 @@ Logout
 <div class=
 "top-bar">
 
+<div>
 <h1>
 Projects
 </h1>
+</div>
 
+<div class="page-actions">
 <button id=
 "openModalBtn">
 + Create Project
 </button>
+<div id="profileMount"></div>
+</div>
 
 </div>
 
@@ -172,6 +205,9 @@ id=
 </div>
 <script src=
 "../js/toast.js">
+</script>
+<script src=
+"../js/profile.js">
 </script>
 <script src=
 "../js/projects.js">

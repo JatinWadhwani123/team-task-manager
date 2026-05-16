@@ -95,9 +95,11 @@ if (
 !data.success
 ) {
 
-return alert(
-data.message
+showToast(
+data.message,
+"error"
 );
+return;
 }
 
 const {
@@ -233,8 +235,9 @@ console.error(
 error
 );
 
-alert(
-"Failed to load project"
+showToast(
+"Failed to load project",
+"error"
 );
 }
 }

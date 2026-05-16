@@ -18,6 +18,86 @@ localStorage.getItem(
 
 let allTasks = [];
 
+const tasksLoader =
+document.getElementById(
+"tasksLoader"
+);
+
+const tasksLoaderMessage =
+document.getElementById(
+"tasksLoaderMessage"
+);
+
+const tasksLoadingMessages = [
+"Sorting tasks into their lanes...",
+"Checking mission priority levels...",
+"Syncing assigned teammates...",
+"Powering up your task board..."
+];
+
+let tasksLoadingTimer =
+null;
+
+let pendingLoads =
+0;
+
+function setTasksLoading(
+isLoading
+) {
+if (!tasksLoader) return;
+
+if (isLoading) {
+pendingLoads += 1;
+} else {
+pendingLoads =
+Math.max(
+0,
+pendingLoads - 1
+);
+}
+
+const shouldShow =
+pendingLoads > 0;
+
+tasksLoader.classList.toggle(
+"hidden",
+!shouldShow
+);
+
+if (shouldShow) {
+if (!tasksLoadingTimer) {
+let messageIndex = 0;
+
+if (tasksLoaderMessage) {
+tasksLoaderMessage.innerText =
+tasksLoadingMessages[messageIndex];
+}
+
+tasksLoadingTimer =
+setInterval(
+() => {
+messageIndex =
+(messageIndex + 1) %
+tasksLoadingMessages.length;
+
+if (tasksLoaderMessage) {
+tasksLoaderMessage.innerText =
+tasksLoadingMessages[messageIndex];
+}
+},
+1200
+);
+}
+} else if (tasksLoadingTimer) {
+clearInterval(
+tasksLoadingTimer
+);
+
+tasksLoadingTimer =
+null;
+}
+}
+
 if (!token) {
 window.location.href =
 "./login.html";
@@ -70,15 +150,15 @@ window.location.href =
    TOGGLE FORM
 ===================== */
 
-if (
-user.role ===
-"Admin"
-) {
-
-document
-.getElementById(
+const openFormBtn =
+document.getElementById(
 "openForm"
-)
+);
+
+openFormBtn.style.display =
+"none";
+
+openFormBtn
 .addEventListener(
 "click",
 () => {
@@ -96,22 +176,16 @@ form.style.display ===
 }
 );
 
-} else {
-
-document
-.getElementById(
-"openForm"
-)
-.style.display =
-"none";
-}
-
 /* =====================
    LOAD PROJECTS
 ===================== */
 
 async function
 loadProjects() {
+
+setTasksLoading(
+true
+);
 
 try {
 
@@ -141,7 +215,20 @@ Select Project
 </option>
 `;
 
-data.projects.forEach(
+const adminProjects =
+data.projects.filter(
+project =>
+project.admin &&
+project.admin._id ===
+user.id
+);
+
+openFormBtn.style.display =
+adminProjects.length > 0
+? "inline-block"
+: "none";
+
+adminProjects.forEach(
 (project) => {
 
 projectSelect.innerHTML +=
@@ -160,7 +247,7 @@ projectSelect
 () => {
 
 const selected =
-data.projects.find(
+adminProjects.find(
 (project) =>
 project._id ===
 projectSelect.value
@@ -175,6 +262,16 @@ selected
 } catch (error) {
 
 console.error(error);
+
+showToast(
+"Unable to load projects for task creation.",
+"error"
+);
+} finally {
+
+setTasksLoading(
+false
+);
 }
 }
 
@@ -267,9 +364,11 @@ if (
 !assignedEmail
 ) {
 
-return alert(
-"Please fill all fields"
+showToast(
+"Please fill all fields",
+"warning"
 );
+return;
 }
 
 try {
@@ -308,8 +407,9 @@ if (
 data.success
 ) {
 
-alert(
-"Task Created Successfully"
+showToast(
+"Task created successfully",
+"success"
 );
 
 /* Reset Form */
@@ -345,8 +445,9 @@ await loadTasks();
 
 } else {
 
-alert(
-data.message
+showToast(
+data.message,
+"error"
 );
 }
 
@@ -363,6 +464,10 @@ console.error(error);
 
 async function
 loadTasks() {
+
+setTasksLoading(
+true
+);
 
 try {
 
@@ -390,6 +495,16 @@ allTasks
 } catch (error) {
 
 console.error(error);
+
+showToast(
+"Unable to load tasks. Please try again.",
+"error"
+);
+} finally {
+
+setTasksLoading(
+false
+);
 }
 }
 
@@ -419,9 +534,18 @@ document.getElementById(
 tasks.forEach(
 (task) => {
 
+const isProjectAdmin =
+task.project &&
+task.project.admin ===
+user.id;
+
+const isAssignedUser =
+task.assignedTo &&
+task.assignedTo._id ===
+user.id;
+
 const adminButtons =
-user.role ===
-"Admin"
+isProjectAdmin
 
 ? `
 <button onclick=
@@ -480,6 +604,8 @@ ${task.priority}
 
 ${task.status ===
 "To Do"
+&&
+(isAssignedUser || isProjectAdmin)
 ? `
 <button onclick=
 "updateTaskStatus(
@@ -493,6 +619,8 @@ Start
 
 ${task.status !==
 "Done"
+&&
+(isAssignedUser || isProjectAdmin)
 ? `
 <button onclick=
 "updateTaskStatus(
@@ -688,8 +816,12 @@ async function
 deleteTask(id) {
 
 const confirmDelete =
-confirm(
-"Delete this task?"
+await showConfirm(
+"Delete this task? This action cannot be undone.",
+{
+title: "Delete task",
+confirmText: "Delete"
+}
 );
 
 if (
@@ -717,6 +849,11 @@ await response.json();
 
 if(data.success){
 
+showToast(
+"Task deleted",
+"success"
+);
+
 await loadTasks();
 }
 
@@ -743,24 +880,33 @@ oldDate
 ) {
 
 const title =
-prompt(
+await showPrompt(
 "Edit title",
-oldTitle
+oldTitle,
+{
+title: "Edit task title"
+}
 );
 
 if (!title)
 return;
 
 const description =
-prompt(
+await showPrompt(
 "Edit description",
-oldDescription
+oldDescription,
+{
+title: "Edit task description"
+}
 );
 
 const priority =
-prompt(
+await showPrompt(
 "Edit priority (Low/Medium/High)",
-oldPriority
+oldPriority,
+{
+title: "Edit task priority"
+}
 );
 
 try {
@@ -795,6 +941,11 @@ const data =
 await response.json();
 
 if(data.success){
+
+showToast(
+"Task updated",
+"success"
+);
 
 await loadTasks();
 }

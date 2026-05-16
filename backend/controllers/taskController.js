@@ -20,6 +20,37 @@ assignedEmail,
 projectId
 } = req.body;
 
+if (
+!title ||
+!description ||
+!dueDate ||
+!assignedEmail ||
+!projectId
+) {
+return res.status(400)
+.json({
+success: false,
+message:
+"Please fill all fields"
+});
+}
+
+if (
+priority &&
+![
+"Low",
+"Medium",
+"High"
+].includes(priority)
+) {
+return res.status(400)
+.json({
+success: false,
+message:
+"Invalid priority"
+});
+}
+
 const project =
 await Project.findById(
 projectId
@@ -34,7 +65,7 @@ message:
 });
 }
 
-/* Only Admin */
+/* Project admin only */
 
 if (
 project.admin.toString() !==
@@ -44,7 +75,7 @@ return res.status(403)
 .json({
 success: false,
 message:
-"Only admin can create tasks"
+"Only project admin can create tasks"
 });
 }
 
@@ -60,6 +91,22 @@ return res.status(404)
 success: false,
 message:
 "User not found"
+});
+}
+
+const isProjectMember =
+project.members.some(
+member =>
+member.toString() ===
+user._id.toString()
+);
+
+if (!isProjectMember) {
+return res.status(400)
+.json({
+success: false,
+message:
+"Assigned user must be a project member"
 });
 }
 
@@ -107,38 +154,41 @@ try {
 
 let tasks;
 
-if (
-req.user.role ===
-"Admin"
-) {
+const adminProjects =
+await Project.find({
+admin:
+req.user._id
+}).select("_id");
 
-tasks =
-await Task.find()
-.populate(
-"project",
-"name"
-)
-.populate(
-"assignedTo",
-"name email"
+const adminProjectIds =
+adminProjects.map(
+project =>
+project._id
 );
-
-} else {
 
 tasks =
 await Task.find({
+$or: [
+{
 assignedTo:
 req.user._id
+},
+{
+project: {
+$in:
+adminProjectIds
+}
+}
+]
 })
 .populate(
 "project",
-"name"
+"name admin members"
 )
 .populate(
 "assignedTo",
 "name email"
 );
-}
 
 res.status(200).json({
 success: true,
@@ -174,6 +224,9 @@ status
 const task =
 await Task.findById(
 taskId
+).populate(
+"project",
+"admin members"
 );
 
 if (!task) {
@@ -182,6 +235,41 @@ return res.status(404)
 success: false,
 message:
 "Task not found"
+});
+}
+
+const isAssignedUser =
+task.assignedTo.toString() ===
+req.user._id.toString();
+
+const isProjectAdmin =
+task.project.admin.toString() ===
+req.user._id.toString();
+
+if (
+!isAssignedUser &&
+!isProjectAdmin
+) {
+return res.status(403)
+.json({
+success: false,
+message:
+"You can update only assigned tasks"
+});
+}
+
+if (
+![
+"To Do",
+"In Progress",
+"Done"
+].includes(status)
+) {
+return res.status(400)
+.json({
+success: false,
+message:
+"Invalid task status"
 });
 }
 
@@ -226,8 +314,28 @@ priority,
 dueDate
 } = req.body;
 
+if (
+priority &&
+![
+"Low",
+"Medium",
+"High"
+].includes(priority)
+) {
+return res.status(400)
+.json({
+success: false,
+message:
+"Invalid priority"
+});
+}
+
 const task =
-await Task.findById(id);
+await Task.findById(id)
+.populate(
+"project",
+"admin"
+);
 
 if (!task) {
 return res.status(404)
@@ -238,17 +346,17 @@ message:
 });
 }
 
-/* Admin only */
+/* Project admin only */
 
 if (
-req.user.role !==
-"Admin"
+task.project.admin.toString() !==
+req.user._id.toString()
 ) {
 return res.status(403)
 .json({
 success: false,
 message:
-"Only admin can edit tasks"
+"Only project admin can edit tasks"
 });
 }
 
@@ -302,7 +410,11 @@ const { id } =
 req.params;
 
 const task =
-await Task.findById(id);
+await Task.findById(id)
+.populate(
+"project",
+"admin"
+);
 
 if (!task) {
 return res.status(404)
@@ -313,17 +425,17 @@ message:
 });
 }
 
-/* Admin only */
+/* Project admin only */
 
 if (
-req.user.role !==
-"Admin"
+task.project.admin.toString() !==
+req.user._id.toString()
 ) {
 return res.status(403)
 .json({
 success: false,
 message:
-"Only admin can delete tasks"
+"Only project admin can delete tasks"
 });
 }
 

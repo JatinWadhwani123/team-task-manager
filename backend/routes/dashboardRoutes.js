@@ -3,6 +3,7 @@ const router = express.Router();
 
 const {
   getDashboardStats,
+  removeTeamMember,
 } = require(
   "../controllers/dashboardController"
 );
@@ -18,6 +19,12 @@ router.get(
   "/stats",
   protect,
   getDashboardStats
+);
+
+router.put(
+  "/remove-member",
+  protect,
+  removeTeamMember
 );
 
 module.exports = router;

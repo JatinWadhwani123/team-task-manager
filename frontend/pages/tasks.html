@@ -35,6 +35,34 @@ href=
 
 <body>
 
+<div
+class="mission-loader"
+id="tasksLoader"
+role="status"
+aria-live="polite"
+>
+  <div class="mission-card">
+    <div class="mission-radar" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <p class="mission-label">Loading task arena</p>
+    <h2>Building your board</h2>
+    <p id="tasksLoaderMessage">
+      Sorting tasks into their lanes...
+    </p>
+    <div class="mission-progress" aria-hidden="true">
+      <div></div>
+    </div>
+    <div class="mission-badges" aria-hidden="true">
+      <span>To Do</span>
+      <span>Progress</span>
+      <span>Done</span>
+    </div>
+  </div>
+</div>
+
 <div class="container">
 
 <!-- Sidebar -->
@@ -77,14 +105,19 @@ Logout
 <div class=
 "top-bar">
 
+<div>
 <h1>
 Task Board
 </h1>
+</div>
 
+<div class="page-actions">
 <button id=
 "openForm">
 + Create Task
 </button>
+<div id="profileMount"></div>
+</div>
 
 </div>
 
@@ -282,6 +315,15 @@ Completed
 id=
 "toastContainer">
 </div>
+
+<script src=
+"../js/toast.js">
+</script>
+
+<script src=
+"../js/profile.js">
+</script>
+
 <script src=
 "../js/tasks.js">
 </script>

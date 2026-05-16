@@ -1,5 +1,6 @@
 const Project = require("../models/Project");
 const User = require("../models/User");
+const Task = require("../models/Task");
 
 /* =====================
    CREATE PROJECT
@@ -138,10 +139,23 @@ message:
 });
 }
 
-/* Get tasks */
+const isMember =
+project.members.some(
+member =>
+member._id.toString() ===
+req.user._id.toString()
+);
 
-const Task =
-require("../models/Task");
+if (!isMember) {
+return res.status(403)
+.json({
+success:false,
+message:
+"You do not have access to this project"
+});
+}
+
+/* Get tasks */
 
 const tasks =
 await Task.find({
@@ -231,7 +245,7 @@ return res.status(403)
 .json({
 success:false,
 message:
-"Only admin can add members"
+"Only project admin can add members"
 });
 }
 
@@ -326,7 +340,7 @@ return res.status(403)
 .json({
 success:false,
 message:
-"Only admin can remove members"
+"Only project admin can remove members"
 });
 }
 
@@ -344,6 +358,22 @@ message:
 });
 }
 
+const isMember =
+project.members.some(
+member =>
+member.toString() ===
+memberId
+);
+
+if (!isMember) {
+return res.status(400)
+.json({
+success:false,
+message:
+"Member is not part of this project"
+});
+}
+
 project.members =
 project.members.filter(
 (member)=>
@@ -353,11 +383,21 @@ member.toString()
 
 await project.save();
 
+const deletedTasks =
+await Task.deleteMany({
+project:
+projectId,
+assignedTo:
+memberId
+});
+
 res.status(200)
 .json({
 success:true,
 message:
-"Member removed successfully"
+deletedTasks.deletedCount > 0
+? `Member removed and ${deletedTasks.deletedCount} assigned task(s) were removed`
+: "Member removed successfully"
 });
 
 } catch (error) {

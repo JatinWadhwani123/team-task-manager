@@ -61,17 +61,24 @@ data.user
 )
 );
 
-alert(
-"Login Successful"
+showToast(
+"Login successful",
+"success"
 );
 
+setTimeout(
+() => {
 window.location.href =
 "./dashboard.html";
+},
+700
+);
 
 }else{
 
-alert(
-data.message
+showToast(
+data.message,
+"error"
 );
 }
 
@@ -79,8 +86,9 @@ data.message
 
 console.error(error);
 
-alert(
-"Something went wrong"
+showToast(
+"Something went wrong",
+"error"
 );
 }
 }

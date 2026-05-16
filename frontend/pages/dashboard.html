@@ -38,6 +38,35 @@ href=
 
 <body>
 
+<div
+class="page-loader"
+id="dashboardLoader"
+role="status"
+aria-live="polite"
+>
+  <div class="loader-card">
+    <div class="loader-orbit" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <h2>
+      Preparing your workspace
+    </h2>
+    <p id="loaderMessage">
+      Syncing your latest tasks and project updates...
+    </p>
+    <div class="loader-progress" aria-hidden="true">
+      <div></div>
+    </div>
+    <div class="loader-steps" aria-hidden="true">
+      <span>Projects</span>
+      <span>Tasks</span>
+      <span>Analytics</span>
+    </div>
+  </div>
+</div>
+
 <div class="dashboard-container">
 
   <!-- Sidebar -->
@@ -83,6 +112,9 @@ href=
     <div class=
     "top-section">
 
+      <div class="top-header">
+        <div>
+
       <h1>
         Welcome Back 👋
       </h1>
@@ -92,6 +124,10 @@ href=
         projects & tasks
         professionally.
       </p>
+
+        </div>
+        <div id="profileMount"></div>
+      </div>
 
     </div>
 
@@ -283,12 +319,26 @@ href=
     <div class=
     "recent-section">
 
-      <h2>
-        Tasks Per User
-      </h2>
+      <div class="section-toolbar">
+        <div>
+          <h2>
+            Team Inspector
+          </h2>
+          <p>
+            Select a person to review assigned projects, tasks, and workload.
+          </p>
+        </div>
+        <select id="teamMemberSelect">
+          <option value="">Select team member</option>
+        </select>
+      </div>
 
       <div id=
       "tasksPerUser">
+      </div>
+
+      <div id="teamMemberDetails" class="team-details empty-state">
+        Select a team member to see their projects and tasks.
       </div>
 
     </div>
@@ -308,6 +358,10 @@ id=
 
 <script src=
 "../js/toast.js">
+</script>
+
+<script src=
+"../js/profile.js">
 </script>
 
 <script src=

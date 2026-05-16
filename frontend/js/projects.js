@@ -11,7 +11,75 @@ JSON.parse(
 localStorage.getItem(
 "user"
 )
+) || {};
+
+const projectsLoader =
+document.getElementById(
+"projectsLoader"
 );
+
+const projectsLoaderMessage =
+document.getElementById(
+"projectsLoaderMessage"
+);
+
+const projectsLoadingMessages = [
+"Locating active project zones...",
+"Syncing team member signals...",
+"Checking project status lanes...",
+"Deploying project cards..."
+];
+
+let projectsLoadingTimer =
+null;
+
+function setProjectsLoading(
+isLoading
+) {
+if (!projectsLoader) return;
+
+projectsLoader.classList.toggle(
+"hidden",
+!isLoading
+);
+
+if (isLoading) {
+if (projectsLoadingTimer) {
+clearInterval(
+projectsLoadingTimer
+);
+}
+
+let messageIndex = 0;
+
+if (projectsLoaderMessage) {
+projectsLoaderMessage.innerText =
+projectsLoadingMessages[messageIndex];
+}
+
+projectsLoadingTimer =
+setInterval(
+() => {
+messageIndex =
+(messageIndex + 1) %
+projectsLoadingMessages.length;
+
+if (projectsLoaderMessage) {
+projectsLoaderMessage.innerText =
+projectsLoadingMessages[messageIndex];
+}
+},
+1200
+);
+} else if (projectsLoadingTimer) {
+clearInterval(
+projectsLoadingTimer
+);
+
+projectsLoadingTimer =
+null;
+}
+}
 
 if (!token) {
 window.location.href =
@@ -80,11 +148,6 @@ null;
 
 /* Open Create Project */
 
-if (
-user.role ===
-"Admin"
-) {
-
 document
 .getElementById(
 "openModalBtn"
@@ -97,16 +160,6 @@ projectModal.style.display =
 "flex";
 }
 );
-
-} else {
-
-document
-.getElementById(
-"openModalBtn"
-)
-.style.display =
-"none";
-}
 
 /* =====================
    CREATE PROJECT
@@ -134,9 +187,11 @@ if (
 !name ||
 !description
 ) {
-return alert(
-"Please fill all fields"
+showToast(
+"Please fill all fields",
+"warning"
 );
+return;
 }
 
 try {
@@ -171,8 +226,9 @@ if (
 data.success
 ) {
 
-alert(
-"Project Created"
+showToast(
+"Project created",
+"success"
 );
 
 projectModal.style.display =
@@ -190,8 +246,9 @@ loadProjects();
 
 } else {
 
-alert(
-data.message
+showToast(
+data.message,
+"error"
 );
 }
 
@@ -222,9 +279,11 @@ document.getElementById(
 ).value.trim();
 
 if (!email) {
-return alert(
-"Enter email"
+showToast(
+"Enter email",
+"warning"
 );
+return;
 }
 
 try {
@@ -256,8 +315,9 @@ email
 const data =
 await response.json();
 
-alert(
-data.message
+showToast(
+data.message,
+data.success ? "success" : "error"
 );
 
 if (
@@ -294,8 +354,12 @@ memberId
 ) {
 
 const confirmRemove =
-confirm(
-"Remove member?"
+await showConfirm(
+"Remove this member from the project?",
+{
+title: "Remove member",
+confirmText: "Remove"
+}
 );
 
 if (
@@ -330,8 +394,9 @@ memberId
 const data =
 await response.json();
 
-alert(
-data.message
+showToast(
+data.message,
+data.success ? "success" : "error"
 );
 
 loadProjects();
@@ -353,6 +418,10 @@ removeMember;
 
 async function
 loadProjects() {
+
+setProjectsLoading(
+true
+);
 
 try {
 
@@ -381,6 +450,11 @@ container.innerHTML =
 data.projects.forEach(
 (project) => {
 
+const isProjectAdmin =
+project.admin &&
+project.admin._id ===
+user.id;
+
 const membersHTML =
 project.members
 .map(
@@ -395,20 +469,20 @@ ${member.name}
 </span>
 
 ${
-user.role ===
-"Admin" &&
+isProjectAdmin &&
 member._id !==
 project.admin._id
 
 ? `
 <button
 onclick=
-"removeMember(
+"event.stopPropagation();
+removeMember(
 '${project._id}',
 '${member._id}'
 )"
 >
-❌
+Remove
 </button>
 `
 : ""
@@ -454,8 +528,7 @@ ${membersHTML}
 </div>
 
 ${
-user.role ===
-"Admin"
+isProjectAdmin
 
 ? `
 <button
@@ -481,6 +554,16 @@ openMemberModal(
 
 console.error(
 error
+);
+
+showToast(
+"Unable to load projects. Please try again.",
+"error"
+);
+} finally {
+
+setProjectsLoading(
+false
 );
 }
 }

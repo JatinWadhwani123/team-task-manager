@@ -7,11 +7,15 @@
     content="width=device-width, initial-scale=1.0"
   />
 
-  <title>Signup</title>
+  <title>Signup | TaskFlow Pro</title>
 
   <link
     rel="stylesheet"
     href="../css/auth.css"
+  />
+  <link
+    rel="stylesheet"
+    href="../css/toast.css"
   />
 
   <link
@@ -22,53 +26,80 @@
 
 <body>
 
-<div class="auth-container">
+<main class="auth-container">
 
-  <div class="left-panel">
-    <h1>
-      Welcome to
-      TaskFlow Pro
-    </h1>
+  <section class="left-panel">
+    <a class="auth-brand" href="../index.html">TaskFlow Pro</a>
+    <div class="panel-copy">
+      <span class="auth-kicker">Team task manager</span>
+      <h1>
+        Start managing team work with confidence.
+      </h1>
 
-    <p>
-      Manage your projects
-      smarter with team
-      collaboration.
-    </p>
-  </div>
+      <p>
+        Create your workspace, organize projects, assign tasks, and help everyone see what matters next.
+      </p>
+    </div>
+    <div class="panel-highlights" aria-label="Product highlights">
+      <div>
+        <strong>Plan</strong>
+        <span>Projects clearly</span>
+      </div>
+      <div>
+        <strong>Assign</strong>
+        <span>Tasks quickly</span>
+      </div>
+      <div>
+        <strong>Track</strong>
+        <span>Progress daily</span>
+      </div>
+    </div>
+  </section>
 
-  <div class="right-panel">
+  <section class="right-panel">
 
-    <form id="signupForm">
+    <form id="signupForm" class="auth-card">
 
-      <h2>Create Account</h2>
+      <div class="form-heading">
+        <h2>Create your account</h2>
+        <p>Set up your account and jump into your dashboard.</p>
+      </div>
 
-      <input
-        type="text"
-        id="name"
-        placeholder="Full Name"
-        required
-      />
+      <label>
+        <span>Full name</span>
+        <input
+          type="text"
+          id="name"
+          placeholder="Your full name"
+          required
+        />
+      </label>
 
-      <input
-        type="email"
-        id="email"
-        placeholder="Email"
-        required
-      />
+      <label>
+        <span>Email address</span>
+        <input
+          type="email"
+          id="email"
+          placeholder="you@example.com"
+          required
+        />
+      </label>
 
-      <input
-        type="password"
-        id="password"
-        placeholder="Password"
-        required
-      />
+      <label>
+        <span>Password</span>
+        <input
+          type="password"
+          id="password"
+          placeholder="Create a password"
+          required
+        />
+      </label>
 
       <button type="submit">
         Sign Up
       </button>
 
-      <p>
+      <p class="auth-switch">
         Already have an account?
         <a href="./login.html">
           Login
@@ -77,11 +108,12 @@
 
     </form>
 
-  </div>
+  </section>
 
-</div>
+</main>
 
 <script src="../js/api.js"></script>
+<script src="../js/toast.js"></script>
 <script src="../js/signup.js"></script>
 </body>
 </html>
