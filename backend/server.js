@@ -30,8 +30,6 @@ const app = express();
 app.use(helmet());
 
 // CORS
-const cors = require("cors");
-
 app.use(
   cors({
     origin: "*",
