@@ -1,8 +1,8 @@
 const TASK_API =
-"http://localhost:5000/api/tasks";
+"https://team-task-manager-production-4508.up.railway.app/api/tasks";
 
 const PROJECT_API =
-"http://localhost:5000/api/projects";
+"https://team-task-manager-production-4508.up.railway.app/api/projects";
 
 const token =
 localStorage.getItem(

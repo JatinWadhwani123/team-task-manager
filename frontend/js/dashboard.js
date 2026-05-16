@@ -1,5 +1,5 @@
 const API_URL =
-"http://localhost:5000/api/dashboard/stats";
+"https://team-task-manager-production-4508.up.railway.app/api/dashboard/stats";
 
 const token =
 localStorage.getItem(

@@ -1,17 +1,22 @@
-const loginForm =
+const signupForm =
 document.getElementById(
-"loginForm"
+"signupForm"
 );
 
-if(loginForm){
+if(signupForm){
 
-loginForm
+signupForm
 .addEventListener(
 "submit",
 
 async(e)=>{
 
 e.preventDefault();
+
+const name =
+document.getElementById(
+"name"
+).value.trim();
 
 const email =
 document.getElementById(
@@ -27,7 +32,7 @@ try{
 
 const response =
 await fetch(
-`${AUTH_API}/login`,
+`${AUTH_API}/signup`,
 {
 method:"POST",
 
@@ -38,6 +43,7 @@ headers:{
 
 body:
 JSON.stringify({
+name,
 email,
 password
 })
@@ -62,7 +68,7 @@ data.user
 );
 
 alert(
-"Login Successful"
+"Signup Successful"
 );
 
 window.location.href =
