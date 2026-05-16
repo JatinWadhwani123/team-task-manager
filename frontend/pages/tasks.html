@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+
+<meta
+name="viewport"
+content=
+"width=device-width,
+initial-scale=1.0"
+/>
+
+<title>
+Tasks
+</title>
+
+<link
+rel="stylesheet"
+href=
+"../css/tasks.css"
+/>
+
+<link
+href=
+"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+rel="stylesheet"
+/>
+
+<link
+rel="stylesheet"
+href=
+"../css/toast.css"
+/>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- Sidebar -->
+<aside class="sidebar">
+
+<h2>
+TaskFlow Pro
+</h2>
+
+<ul>
+
+<li onclick=
+"goDashboard()">
+Dashboard
+</li>
+
+<li onclick=
+"goProjects()">
+Projects
+</li>
+
+<li class=
+"active">
+Tasks
+</li>
+
+<li id=
+"logoutBtn">
+Logout
+</li>
+
+</ul>
+
+</aside>
+
+<!-- Main -->
+<main class=
+"main">
+
+<div class=
+"top-bar">
+
+<h1>
+Task Board
+</h1>
+
+<button id=
+"openForm">
++ Create Task
+</button>
+
+</div>
+
+<!-- Search + Filter -->
+
+<div class=
+"filter-bar">
+
+<input
+type="text"
+id="searchTask"
+placeholder=
+"🔍 Search task..."
+/>
+
+<select id=
+"statusFilter">
+
+<option value=
+"All">
+All Status
+</option>
+
+<option value=
+"To Do">
+To Do
+</option>
+
+<option value=
+"In Progress">
+In Progress
+</option>
+
+<option value=
+"Done">
+Completed
+</option>
+
+</select>
+
+<select id=
+"priorityFilter">
+
+<option value=
+"All">
+All Priority
+</option>
+
+<option value=
+"Low">
+Low
+</option>
+
+<option value=
+"Medium">
+Medium
+</option>
+
+<option value=
+"High">
+High
+</option>
+
+</select>
+
+</div>
+
+<!-- Task Form -->
+
+<div
+class=
+"task-form"
+id=
+"taskForm">
+
+<input
+type="text"
+id="title"
+placeholder=
+"Task Title"
+/>
+
+<textarea
+id=
+"description"
+placeholder=
+"Task Description"
+></textarea>
+
+<input
+type=
+"date"
+id=
+"dueDate"
+/>
+
+<select id=
+"projectSelect">
+
+<option value=
+"">
+Select Project
+</option>
+
+</select>
+
+<select id=
+"memberSelect">
+
+<option value=
+"">
+Assign Member
+</option>
+
+</select>
+
+<select id=
+"priority">
+
+<option value=
+"Low">
+Low
+</option>
+
+<option value=
+"Medium">
+Medium
+</option>
+
+<option value=
+"High">
+High
+</option>
+
+</select>
+
+<button id=
+"createTask">
+Create Task
+</button>
+
+</div>
+
+<!-- Board -->
+
+<div class=
+"board">
+
+<div class=
+"column">
+
+<h2>
+To Do
+</h2>
+
+<div id=
+"todo">
+</div>
+
+</div>
+
+<div class=
+"column">
+
+<h2>
+In Progress
+</h2>
+
+<div id=
+"progress">
+</div>
+
+</div>
+
+<div class=
+"column">
+
+<h2>
+Completed
+</h2>
+
+<div id=
+"completed">
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+</div>
+<div class=
+"toast-container"
+id=
+"toastContainer">
+</div>
+<script src=
+"../js/tasks.js">
+</script>
+
+</body>
+</html>

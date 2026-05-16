@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+
+<meta
+name="viewport"
+content=
+"width=device-width,
+initial-scale=1.0"
+/>
+
+<title>
+Projects
+</title>
+
+<link
+rel="stylesheet"
+href=
+"../css/projects.css"
+/>
+
+<link
+href=
+"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+rel="stylesheet"
+/>
+
+<link
+rel="stylesheet"
+href=
+"../css/toast.css"
+/>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- Sidebar -->
+<aside class="sidebar">
+
+<h2>
+TaskFlow Pro
+</h2>
+
+<ul>
+
+<li onclick=
+"goDashboard()">
+Dashboard
+</li>
+
+<li class=
+"active">
+Projects
+</li>
+
+<li onclick=
+"goTasks()">
+Tasks
+</li>
+
+<li id=
+"logoutBtn">
+Logout
+</li>
+
+</ul>
+
+</aside>
+
+<!-- Main -->
+<main class=
+"main-content">
+
+<div class=
+"top-bar">
+
+<h1>
+Projects
+</h1>
+
+<button id=
+"openModalBtn">
++ Create Project
+</button>
+
+</div>
+
+<!-- Projects Grid -->
+<div
+id=
+"projectsContainer"
+class=
+"projects-grid">
+</div>
+
+</main>
+
+</div>
+
+<!-- Create Project Modal -->
+
+<div
+class="modal"
+id="projectModal"
+>
+
+<div class=
+"modal-content">
+
+<h2>
+Create Project
+</h2>
+
+<input
+type="text"
+id="projectName"
+placeholder=
+"Project Name"
+/>
+
+<textarea
+id=
+"projectDescription"
+placeholder=
+"Project Description"
+></textarea>
+
+<button id=
+"saveProject">
+Save Project
+</button>
+
+</div>
+</div>
+
+<!-- Add Member Modal -->
+
+<div
+class="modal"
+id="memberModal"
+style="display:none"
+>
+
+<div class=
+"modal-content">
+
+<h2>
+Add Member
+</h2>
+
+<input
+type="email"
+id="memberEmail"
+placeholder=
+"Enter member email"
+/>
+
+<button id=
+"addMemberBtn">
+Add Member
+</button>
+
+</div>
+</div>
+<div class=
+"toast-container"
+id=
+"toastContainer">
+</div>
+<script src=
+"../js/toast.js">
+</script>
+<script src=
+"../js/projects.js">
+</script>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+
+<meta
+name="viewport"
+content=
+"width=device-width,
+initial-scale=1.0"
+/>
+
+<title>
+Project Details
+</title>
+
+<link
+rel="stylesheet"
+href=
+"../css/project-details.css"
+/>
+
+<link
+href=
+"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+rel="stylesheet"
+/>
+
+</head>
+
+<body>
+
+<div class=
+"dashboard-container">
+
+<!-- Sidebar -->
+
+<aside class=
+"sidebar">
+
+<h2>
+TaskFlow Pro
+</h2>
+
+<ul>
+
+<li onclick=
+"goDashboard()">
+Dashboard
+</li>
+
+<li class=
+"active">
+Project Details
+</li>
+
+<li onclick=
+"goTasks()">
+Tasks
+</li>
+
+<li id=
+"logoutBtn">
+Logout
+</li>
+
+</ul>
+
+</aside>
+
+<!-- Main -->
+
+<main class=
+"main-content">
+
+<div class=
+"top-section">
+
+<h1 id=
+"projectName">
+Loading...
+</h1>
+
+<p id=
+"projectDescription">
+Loading project...
+</p>
+
+</div>
+
+<!-- Admin -->
+
+<div class=
+"card">
+
+<h3>
+Project Admin
+</h3>
+
+<p id=
+"projectAdmin">
+Loading...
+</p>
+
+</div>
+
+<!-- Progress -->
+
+<div class=
+"card">
+
+<h3>
+Project Progress
+</h3>
+
+<div class=
+"progress-container">
+
+<div
+class=
+"progress-bar"
+id=
+"progressBar">
+</div>
+
+</div>
+
+<p id=
+"progressText">
+0%
+Completed
+</p>
+
+</div>
+
+<!-- Members -->
+
+<div class=
+"recent-section">
+
+<h2>
+Team Members
+</h2>
+
+<div id=
+"membersContainer">
+</div>
+
+</div>
+
+<!-- Tasks -->
+
+<div class=
+"recent-section">
+
+<h2>
+Project Tasks
+</h2>
+
+<div id=
+"tasksContainer">
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+<script src=
+"../js/project-details.js">
+</script>
+
+</body>
+</html>

@@ -1,0 +1,279 @@
+.toast-container{
+position:fixed;
+top:20px;
+right:20px;
+z-index:9999;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.toast{
+min-width:320px;
+padding:18px 22px;
+border-radius:18px;
+color:white;
+font-weight:600;
+font-size:15px;
+
+box-shadow:
+0 10px 30px
+rgba(0,0,0,0.15);
+
+animation:
+slideIn 0.3s ease,
+fadeOut 0.4s ease 2.6s forwards;
+}
+
+.toast.success{
+background:#10b981;
+}
+
+.toast.error{
+background:#ef4444;
+}
+
+.toast.warning{
+background:#f59e0b;
+}
+
+@keyframes slideIn{
+
+from{
+transform:
+translateX(100%);
+opacity:0;
+}
+
+to{
+transform:
+translateX(0);
+opacity:1;
+}
+}
+
+@keyframes fadeOut{
+
+to{
+opacity:0;
+transform:
+translateX(100%);
+}
+}
+/* ===================================
+   RESPONSIVE DESIGN
+=================================== */
+
+/* Tablet */
+
+@media screen and (max-width: 1024px){
+
+  .cards{
+    grid-template-columns:
+    repeat(2,1fr);
+  }
+
+  .board{
+    grid-template-columns:
+    1fr;
+  }
+
+  .projects-grid{
+    grid-template-columns:
+    repeat(2,1fr);
+  }
+
+  .top-bar h1,
+  .top-section h1{
+    font-size:34px;
+  }
+}
+
+/* Mobile */
+
+@media screen and (max-width: 768px){
+
+  /* Layout */
+
+  .container,
+  .dashboard-container,
+  .hero{
+    flex-direction:column;
+  }
+
+  /* Sidebar */
+
+  .sidebar{
+    width:100%;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .sidebar h2{
+    margin-bottom:20px;
+    font-size:28px;
+  }
+
+  .sidebar ul{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    width:100%;
+  }
+
+  .sidebar li{
+    margin-bottom:0;
+    text-align:center;
+    flex:1;
+    min-width:120px;
+  }
+
+  /* Main */
+
+  .main,
+  .main-content{
+    width:100%;
+    padding:20px;
+  }
+
+  /* Top Bar */
+
+  .top-bar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+  }
+
+  .top-bar h1,
+  .top-section h1{
+    font-size:32px;
+  }
+
+  /* Dashboard Cards */
+
+  .cards{
+    grid-template-columns:
+    1fr;
+  }
+
+  .card{
+    padding:22px;
+  }
+
+  .card h1{
+    font-size:34px;
+  }
+
+  /* Project Grid */
+
+  .projects-grid{
+    grid-template-columns:
+    1fr;
+  }
+
+  /* Task Board */
+
+  .board{
+    grid-template-columns:
+    1fr;
+  }
+
+  .column{
+    min-height:auto;
+  }
+
+  .task-actions{
+    flex-wrap:wrap;
+  }
+
+  /* Search Filters */
+
+  .filter-bar{
+    flex-direction:column;
+  }
+
+  .filter-bar input,
+  .filter-bar select{
+    width:100%;
+  }
+
+  /* Forms */
+
+  .task-form,
+  .modal-content{
+    width:100%;
+    padding:22px;
+  }
+
+  input,
+  textarea,
+  select,
+  button{
+    font-size:15px;
+  }
+
+  /* Hero Landing */
+
+  .navbar{
+    flex-direction:column;
+    gap:20px;
+    padding:25px;
+  }
+
+  .hero{
+    padding:30px 20px;
+    text-align:center;
+  }
+
+  .hero-left h1{
+    font-size:36px;
+  }
+
+  .hero-left p{
+    font-size:16px;
+  }
+
+  /* Project Details */
+
+  .recent-card{
+    padding:18px;
+  }
+}
+
+/* Small Mobile */
+
+@media screen and (max-width: 480px){
+
+  .sidebar h2{
+    font-size:24px;
+  }
+
+  .top-bar h1,
+  .top-section h1{
+    font-size:28px;
+  }
+
+  .card h1{
+    font-size:28px;
+  }
+
+  #openForm,
+  #openModalBtn,
+  .member-btn,
+  #createTask,
+  #saveProject{
+    width:100%;
+  }
+
+  .hero-left h1{
+    font-size:30px;
+  }
+
+  .hero-btn{
+    width:100%;
+    text-align:center;
+  }
+}

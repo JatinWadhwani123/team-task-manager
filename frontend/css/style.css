@@ -1,0 +1,307 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+body{
+  background:#f8fafc;
+}
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:25px 80px;
+  background:#fff;
+  box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.logo{
+  font-size:28px;
+  font-weight:700;
+  color:#2563eb;
+}
+
+.nav-buttons{
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+
+.nav-buttons a{
+  text-decoration:none;
+  color:#111827;
+  font-weight:500;
+}
+
+.signup-btn{
+  background:#2563eb;
+  color:#fff !important;
+  padding:12px 22px;
+  border-radius:10px;
+}
+
+.hero{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:80px;
+  gap:50px;
+}
+
+.hero-left{
+  flex:1;
+}
+
+.hero-left h1{
+  font-size:55px;
+  line-height:1.2;
+  color:#111827;
+}
+
+.hero-left p{
+  margin-top:20px;
+  color:#6b7280;
+  font-size:20px;
+  line-height:1.8;
+}
+
+.hero-btn{
+  display:inline-block;
+  margin-top:30px;
+  background:#2563eb;
+  color:#fff;
+  padding:16px 30px;
+  text-decoration:none;
+  border-radius:12px;
+  font-weight:600;
+}
+
+.hero-right{
+  flex:1;
+}
+
+.hero-right img{
+  width:100%;
+  border-radius:24px;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+=================================== */
+
+/* Tablet */
+
+@media screen and (max-width: 1024px){
+
+  .cards{
+    grid-template-columns:
+    repeat(2,1fr);
+  }
+
+  .board{
+    grid-template-columns:
+    1fr;
+  }
+
+  .projects-grid{
+    grid-template-columns:
+    repeat(2,1fr);
+  }
+
+  .top-bar h1,
+  .top-section h1{
+    font-size:34px;
+  }
+}
+
+/* Mobile */
+
+@media screen and (max-width: 768px){
+
+  /* Layout */
+
+  .container,
+  .dashboard-container,
+  .hero{
+    flex-direction:column;
+  }
+
+  /* Sidebar */
+
+  .sidebar{
+    width:100%;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .sidebar h2{
+    margin-bottom:20px;
+    font-size:28px;
+  }
+
+  .sidebar ul{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    width:100%;
+  }
+
+  .sidebar li{
+    margin-bottom:0;
+    text-align:center;
+    flex:1;
+    min-width:120px;
+  }
+
+  /* Main */
+
+  .main,
+  .main-content{
+    width:100%;
+    padding:20px;
+  }
+
+  /* Top Bar */
+
+  .top-bar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+  }
+
+  .top-bar h1,
+  .top-section h1{
+    font-size:32px;
+  }
+
+  /* Dashboard Cards */
+
+  .cards{
+    grid-template-columns:
+    1fr;
+  }
+
+  .card{
+    padding:22px;
+  }
+
+  .card h1{
+    font-size:34px;
+  }
+
+  /* Project Grid */
+
+  .projects-grid{
+    grid-template-columns:
+    1fr;
+  }
+
+  /* Task Board */
+
+  .board{
+    grid-template-columns:
+    1fr;
+  }
+
+  .column{
+    min-height:auto;
+  }
+
+  .task-actions{
+    flex-wrap:wrap;
+  }
+
+  /* Search Filters */
+
+  .filter-bar{
+    flex-direction:column;
+  }
+
+  .filter-bar input,
+  .filter-bar select{
+    width:100%;
+  }
+
+  /* Forms */
+
+  .task-form,
+  .modal-content{
+    width:100%;
+    padding:22px;
+  }
+
+  input,
+  textarea,
+  select,
+  button{
+    font-size:15px;
+  }
+
+  /* Hero Landing */
+
+  .navbar{
+    flex-direction:column;
+    gap:20px;
+    padding:25px;
+  }
+
+  .hero{
+    padding:30px 20px;
+    text-align:center;
+  }
+
+  .hero-left h1{
+    font-size:36px;
+  }
+
+  .hero-left p{
+    font-size:16px;
+  }
+
+  /* Project Details */
+
+  .recent-card{
+    padding:18px;
+  }
+}
+
+/* Small Mobile */
+
+@media screen and (max-width: 480px){
+
+  .sidebar h2{
+    font-size:24px;
+  }
+
+  .top-bar h1,
+  .top-section h1{
+    font-size:28px;
+  }
+
+  .card h1{
+    font-size:28px;
+  }
+
+  #openForm,
+  #openModalBtn,
+  .member-btn,
+  #createTask,
+  #saveProject{
+    width:100%;
+  }
+
+  .hero-left h1{
+    font-size:30px;
+  }
+
+  .hero-btn{
+    width:100%;
+    text-align:center;
+  }
+}

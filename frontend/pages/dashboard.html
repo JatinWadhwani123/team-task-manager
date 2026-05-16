@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8" />
+
+<meta
+name="viewport"
+content=
+"width=device-width,
+initial-scale=1.0"
+/>
+
+<title>
+Dashboard
+</title>
+
+<link
+rel="stylesheet"
+href=
+"../css/dashboard.css"
+/>
+
+<link
+href=
+"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+rel="stylesheet"
+/>
+
+<link
+rel="stylesheet"
+href=
+"../css/toast.css"
+/>
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+  <!-- Sidebar -->
+
+  <aside class="sidebar">
+
+    <h2>
+      TaskFlow Pro
+    </h2>
+
+    <ul>
+
+      <li class="active">
+        Dashboard
+      </li>
+
+      <li onclick=
+      "goToProjects()">
+        Projects
+      </li>
+
+      <li onclick=
+      "goToTasks()">
+        Tasks
+      </li>
+
+      <li id=
+      "logoutBtn">
+        Logout
+      </li>
+
+    </ul>
+
+  </aside>
+
+  <!-- Main -->
+
+  <main class=
+  "main-content">
+
+    <!-- Header -->
+
+    <div class=
+    "top-section">
+
+      <h1>
+        Welcome Back 👋
+      </h1>
+
+      <p>
+        Track your
+        projects & tasks
+        professionally.
+      </p>
+
+    </div>
+
+    <!-- Stats Cards -->
+
+    <div class=
+    "cards">
+
+      <div class=
+      "card">
+
+        <h3>
+          Total Tasks
+        </h3>
+
+        <h1 id=
+        "totalTasks">
+          0
+        </h1>
+
+      </div>
+
+      <div class=
+      "card">
+
+        <h3>
+          To Do
+        </h3>
+
+        <h1 id=
+        "todoTasks">
+          0
+        </h1>
+
+      </div>
+
+      <div class=
+      "card">
+
+        <h3>
+          In Progress
+        </h3>
+
+        <h1 id=
+        "progressTasks">
+          0
+        </h1>
+
+      </div>
+
+      <div class=
+      "card">
+
+        <h3>
+          Completed
+        </h3>
+
+        <h1 id=
+        "completedTasks">
+          0
+        </h1>
+
+      </div>
+
+      <div class=
+      "card">
+
+        <h3>
+          Overdue
+        </h3>
+
+        <h1 id=
+        "overdueTasks">
+          0
+        </h1>
+
+      </div>
+
+    </div>
+
+    <!-- Analytics -->
+
+    <div class=
+    "recent-section">
+
+      <h2>
+        Analytics
+      </h2>
+
+      <!-- Completion Progress -->
+
+      <div class=
+      "analytics-card">
+
+        <h3>
+          Task Completion
+        </h3>
+
+        <div class=
+        "progress-wrapper">
+
+          <div
+          class=
+          "task-progress-bar"
+
+          id=
+          "taskProgressBar">
+          </div>
+
+        </div>
+
+        <p id=
+        "taskProgressText">
+
+          0% Completed
+
+        </p>
+
+      </div>
+
+      <!-- Breakdown -->
+
+      <div class=
+      "analytics-grid">
+
+        <div class=
+        "analytics-box">
+
+          <h3>
+            To Do
+          </h3>
+
+          <h1 id=
+          "analyticsTodo">
+            0
+          </h1>
+
+        </div>
+
+        <div class=
+        "analytics-box">
+
+          <h3>
+            In Progress
+          </h3>
+
+          <h1 id=
+          "analyticsProgress">
+            0
+          </h1>
+
+        </div>
+
+        <div class=
+        "analytics-box">
+
+          <h3>
+            Completed
+          </h3>
+
+          <h1 id=
+          "analyticsCompleted">
+            0
+          </h1>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Recent Tasks -->
+
+    <div class=
+    "recent-section">
+
+      <h2>
+        Recent Tasks
+      </h2>
+
+      <div id=
+      "recentTasks">
+      </div>
+
+    </div>
+
+    <!-- Tasks Per User -->
+
+    <div class=
+    "recent-section">
+
+      <h2>
+        Tasks Per User
+      </h2>
+
+      <div id=
+      "tasksPerUser">
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+<!-- Toast -->
+
+<div class=
+"toast-container"
+
+id=
+"toastContainer">
+</div>
+
+<script src=
+"../js/toast.js">
+</script>
+
+<script src=
+"../js/dashboard.js">
+</script>
+
+</body>
+</html>
